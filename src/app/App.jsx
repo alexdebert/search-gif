@@ -10,7 +10,7 @@ const App = () => (
 	<div>
 		<div className="container-fluid">
 			<TrendingList />
-			<div>
+			<div className="main-section">
 				<FavoritesList />
 				<Search />
 			</div>

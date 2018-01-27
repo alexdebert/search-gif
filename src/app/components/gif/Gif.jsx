@@ -4,10 +4,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Gif.scss';
+
 const Gif = props => {
 	return (
-		<div id={props.id}>
-			<a href={props.biggerGifUrl} target="_blank">
+		<div className="gif-container" id={props.id}>
+			<a href={props.originalUrl} target="_blank">
 				<img src={props.url} alt={props.title} height={props.height} width={props.width} />
 			</a>
 		</div>

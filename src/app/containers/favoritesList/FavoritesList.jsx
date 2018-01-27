@@ -4,11 +4,14 @@
 
 import React, {Component} from 'react';
 
+import './FavoritesList.scss'
+
 class FavoritesList extends Component {
 	render() {
 		return (
-			<div className="favorites-section">
-				<p>Favorites list container</p>
+			<div className="jumbotron favorites-container">
+				<h1>Favorites list</h1>
+				<p>You have no favorites Gif yet.</p>
 			</div>
 		)
 	}
