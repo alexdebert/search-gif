@@ -8,13 +8,12 @@ import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-route
 
 // Our app
 import App from './app/App';
-import Home from './app/containers/home/Home';
 
 render((
 	<Router history={browserHistory}>
 		<Route path='/' component={App}>
-			<IndexRoute component={Home}/>
-			<Route path='home' component={Home}/>
+			<IndexRoute component={App}/>
+			<Route path='home' component={App}/>
 			<Redirect from='*' to='/home'/>
 		</Route>
 	</Router>

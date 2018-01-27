@@ -1,13 +1,19 @@
 /**
- * @overview Main app layout.
+ * @overview Home page.
  */
 import React from 'react';
-import Home from './containers/home/Home';
+import FavoritesList from './containers/favoritesList/FavoritesList';
+import TrendingList from './containers/trendingList/TrendingList';
+import Search from './containers/search/Search';
 
-const App = children => (
+const App = () => (
 	<div>
-		<div className='app-container'>
-			<Home />
+		<div className="container-fluid">
+			<TrendingList />
+			<div>
+				<FavoritesList />
+				<Search />
+			</div>
 		</div>
 	</div>
 );
