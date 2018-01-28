@@ -26,19 +26,21 @@ class TrendingList extends Component {
 	}
 
 	render() {
-		const gifs = this.state.gifs
+		const gifs = this.state.gifs;
+		const gifClass = "gif-container";
 		return (
 			<div className="trending-list-container col-md-3">
 				<h5 className="trending-list-title">Trending Now!</h5>
 				<div className="nav nav-pills flex-column">
-				{gifs.map(gif =>
-					<Gif key = {gif.id}
-						id = {gif.id}
-					 	originalUrl = {gif.images.original.url}
-						url = {gif.images.fixed_height_small.url}
-						height = {gif.images.fixed_height_small.height}
-						width = {gif.images.fixed_height_small.width} />
-				)}
+					{gifs.map(gif =>
+						<Gif key = {gif.id}
+							gifClass = {gifClass}
+							id = {gif.id}
+							originalUrl = {gif.images.original.url}
+							url = {gif.images.fixed_height_small.url}
+							height = {gif.images.fixed_height_small.height}
+							width = {gif.images.fixed_height_small.width} />
+					)}
 				</div>
 			</div>
 		)
