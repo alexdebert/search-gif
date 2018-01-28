@@ -1,6 +1,7 @@
 /**
  * @overview Gif component.
  */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -11,9 +12,6 @@ import './Gif.scss';
 const Gif = props => {
 	return (
 		<div className={props.gifClass} id={props.id}>
-			{props.showFavorite &&
-			<FavoriteIcon />
-			}
 			<a href={props.originalUrl} target="_blank">
 				<img src={props.url} alt={props.title} height={props.height} width={props.width} />
 			</a>
@@ -30,7 +28,6 @@ Gif.propTypes = {
 	height: PropTypes.string,
 	originalUrl: PropTypes.string,
 	gifClass: PropTypes.string
-
 };
 
 export default Gif;

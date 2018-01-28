@@ -10,6 +10,7 @@ import './Search.scss';
 import { fetchSearchWord } from '../../api/search'
 
 import Gif from '../../components/gif/Gif'
+import FavoriteIcon from '../../components/favoriteIcon/FavoriteIcon'
 
 class Search extends Component {
 	constructor() {
@@ -17,16 +18,16 @@ class Search extends Component {
 		this.state = {
 			gifs: [],
 			searchWord: '',
-			showResult: false,
-			showFavorite: true
-		}
+			showResult: false
+		};
 
-		this.handleChange = this.handleChange.bind(this)
+		this.handleChange = this.handleChange.bind(this);
 		this.searchGif = this.searchGif.bind(this);
+		this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
 	}
 
 	handleChange(event) {
-			const value = event.target.value;
+		const value = event.target.value;
 
 			this.setState({
 				searchWord: value
@@ -36,18 +37,35 @@ class Search extends Component {
 	searchGif() {
 		const word = this.state.searchWord;
 		fetchSearchWord(word)
-			.then(response => this.setState({
-				gifs: response.data.data,
-				showResult: true
-			}))
-			.catch(error => console.error(error.response));
+			.then(response => {
+
+				let modifiedGifs = response.data.data.map(el => {
+					var o = Object.assign({}, el);
+					o.isFavorite = false;
+					return o;
+				});
+
+				this.setState({
+					gifs: modifiedGifs,
+					showResult: true
+				})
+			})
+			.catch(error => console.error(error.message));
+	}
+
+	handleFavoriteClick(id) {
+		let gifs = this.state.gifs;
+		gifs[id].isFavorite = !gifs[id].isFavorite;
+
+		this.setState({
+			gifs
+		});
 	}
 
 	render() {
 		const gifs = this.state.gifs;
 		const show = this.state.showResult;
-		const gifClass = "gif-container gif-search-result";
-		const showFavorite = this.state.showFavorite;
+		const gifClass = "gif-search-result";
 
 		return (
 			<div className="jumbotron search-container">
@@ -59,19 +77,21 @@ class Search extends Component {
 						<button className="btn btn-outline-secondary" type="button" onClick={this.searchGif}>Search</button>
 					</div>
 				</div>
-				<div>
-					{!gifs.length && show && <h2>No result found.</h2> }
-					{gifs.map(gif =>
-							<Gif key = {gif.id}
-								 showFavorite = {showFavorite}
-								 gifClass={gifClass}
-								 id = {gif.id}
-								 originalUrl = {gif.images.original.url}
-								 url = {gif.images.fixed_height.url}
-								 height = {gif.images.fixed_height.height}
-								 width = {gif.images.fixed_height.width} />
-					)}
-				</div>
+				{!gifs.length && show && <h2>No result found.</h2> }
+				{gifs.map((gif, index) =>
+					<div className="gif-result" key={gif.id}>
+						<FavoriteIcon
+							id={`favorite-gif-${gif.id}`}
+							isFavorite = {gifs[index].isFavorite}
+							handleFavoriteClick = {() => this.handleFavoriteClick(index)}/>
+						<Gif gifClass={gifClass}
+							 id = {gif.id}
+							 originalUrl = {gif.images.original.url}
+							 url = {gif.images.fixed_height.url}
+							 height = {gif.images.fixed_height.height}
+							 width = {gif.images.fixed_height.width} />
+					</div>
+				)}
 			</div>
 		)
 	}
@@ -80,8 +100,7 @@ class Search extends Component {
 Search.propTypes = {
 	gifs: PropTypes.array,
 	searchWord: PropTypes.string,
-	showResult: PropTypes.bool,
-	showFavorite: PropTypes.bool
+	showResult: PropTypes.bool
 };
 
 export default Search;

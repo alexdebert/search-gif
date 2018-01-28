@@ -1,0 +1,16 @@
+.svg-heart-container {
+  position: absolute;
+  margin: 0.5%;
+
+  .svg-heart {
+    height: 1em;
+  }
+
+  .notFavorite {
+    fill: white;
+  }
+
+  .favorite {
+    fill: red;
+  }
+}
