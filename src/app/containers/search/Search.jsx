@@ -10,6 +10,7 @@ import './Search.scss';
 import { fetchSearchWord } from '../../api/search'
 
 import FavoritesList from '../../components/favoritesList/FavoritesList'
+import SearchResultList from '../../components/searchResultList/SearchResultList'
 import Gif from '../../components/gif/Gif'
 import FavoriteIcon from '../../components/favoriteIcon/FavoriteIcon'
 
@@ -40,10 +41,9 @@ class Search extends Component {
 		const word = this.state.searchWord;
 		fetchSearchWord(word)
 			.then(response => {
-
 				let modifiedGifs = response.data.data.map(el => {
 					var o = Object.assign({}, el);
-					o.isFavorite = false;
+					o.isFavorite = this.checkGifFavoriteStatus(el);
 					return o;
 				});
 
@@ -55,27 +55,65 @@ class Search extends Component {
 			.catch(error => console.error(error.message));
 	}
 
-	handleFavoriteClick(index) {
-		let gifs = this.state.gifs,
-			favorites = this.state.favorites,
-			gifId = gifs[index].id;
+	handleFavoriteClick(id) {
+		let gif = this.getGif(id)
 
-		gifs[index].isFavorite = !gifs[index].isFavorite;
+		gif.isFavorite ? this.removeGifFromFavoriteList(gif) : this.addGifToFavoriteList(gif);
+	}
 
-		if(gifs[index].isFavorite) {
-			favorites.push(gifs[index])
-		} else {
-			for(let i=0; i < favorites.length; i++) {
-				if (favorites[i].id == gifId) {
-					favorites.splice(i,1);
-					break;
-				}
+	getGif(id) {
+		const gifs = this.state.gifs;
+		return gifs.find(gif => gif.id == id)
+	}
+
+	addGifToFavoriteList(gif) {
+		const favorites = this.state.favorites;
+		
+		favorites.push(gif);
+
+		this.updateGifFavoriteStatus(gif)
+
+		this.setState({
+			favorites
+		});
+	}
+
+	removeGifFromFavoriteList(gif) {
+		const favorites =this.state.favorites;
+
+		for(let i=0; i < favorites.length; i++) {
+			if (favorites[i].id == gif.id) {
+				favorites.splice(i,1);
+				break;
+			}
+		}
+
+		this.updateGifFavoriteStatus(gif)
+
+		this.setState({
+			favorites
+		});
+
+	}
+
+	checkGifFavoriteStatus(gif) {
+		const favorites =this.state.favorites;
+
+		return favorites.find(favorite => favorite.id == gif.id) ? true : false
+	}
+
+	updateGifFavoriteStatus(gif) {
+		const gifs =this.state.gifs;
+
+		for (let i=0; i < gifs.length; i++) {
+			if (gifs[i].id == gif.id) {
+				gifs[i].isFavorite = !gifs[i].isFavorite;
+				break
 			}
 		}
 
 		this.setState({
-			gifs,
-			favorites
+			gifs
 		});
 	}
 
@@ -87,31 +125,21 @@ class Search extends Component {
 
 		return (
 			<div className="main-section">
-				<FavoritesList favoriteList={favorites}/>
+				<FavoritesList favoriteList={favorites}
+					handleFavoriteClick = {this.handleFavoriteClick}/>
 				<div className="jumbotron search-container">
 					<h1>Search your favorite Gif</h1>
 					<div className="input-group mb-3">
-					<input type="text" className="form-control" placeholder="Search..." aria-label="Search"
-						onChange={this.handleChange} />
+						<input type="text" className="form-control" placeholder="Search..." aria-label="Search"
+							onChange={this.handleChange} />
 						<div className="input-group-append">
 							<button className="btn btn-outline-secondary" type="button" onClick={this.searchGif}>Search</button>
 						</div>
 					</div>
-					{!gifs.length && show && <h2>No result found.</h2> }
-					{gifs.map((gif, index) =>
-						<div className="gif-result" key={gif.id}>
-							<FavoriteIcon
-								id={`favorite-gif-${gif.id}`}
-								isFavorite = {gifs[index].isFavorite}
-								handleFavoriteClick = {() => this.handleFavoriteClick(index)}/>
-							<Gif gifClass={gifClass}
-								 id = {gif.id}
-								 originalUrl = {gif.images.original.url}
-								 url = {gif.images.fixed_height.url}
-								 height = {gif.images.fixed_height.height}
-								 width = {gif.images.fixed_height.width} />
-						</div>
-					)}
+					<SearchResultList gifs={gifs}
+						show={show}
+						gifClass = {gifClass}
+						handleFavoriteClick = {this.handleFavoriteClick}/>
 				</div>
 			</div>
 		)
