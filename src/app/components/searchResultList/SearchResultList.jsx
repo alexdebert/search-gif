@@ -34,7 +34,7 @@ const SearchResultList = props => {
 
 SearchResultList.propTypes = {
 	gifs: PropTypes.array,
-	show: PropTypes.boolean,
+	show: PropTypes.bool,
 	gifClass: PropTypes.string
 };
 

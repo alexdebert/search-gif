@@ -29,9 +29,11 @@ class TrendingList extends Component {
 		const gifs = this.state.gifs;
 		const gifClass = "gif-container";
 		return (
-			<div className="trending-list-container col-md-3">
-				<h5 className="trending-list-title">Trending Now!</h5>
-				<div className="nav nav-pills flex-column">
+			<div className="trending-list-container">
+				<div className="trending-list-title">
+					<h5>Trending Now!</h5>
+				</div>
+				<div className="nav nav-pills flex-column trending-list">
 					{gifs.map(gif =>
 						<Gif key = {gif.id}
 							gifClass = {gifClass}

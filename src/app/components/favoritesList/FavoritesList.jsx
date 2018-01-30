@@ -18,7 +18,7 @@ const FavoritesList = props => {
 			<h1>Favorites list</h1>
 			{!favorites.length && <p>You have no favorites Gif yet.</p> }
 			{favorites.map((gif) =>
-				<div className="gif-favorite-list" key={gif.id}>
+				<div className="gif-favorite-item" key={gif.id}>
 					<FavoriteIcon
 						id={`favorite-gif-${gif.id}`}
 						isFavorite = {gif.isFavorite}

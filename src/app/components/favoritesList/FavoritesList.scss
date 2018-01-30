@@ -1,3 +1,19 @@
 .favorites-container {
-  background: none;
+  background: #fafafa;
+  border: 1px solid #e1e8ed;
+  padding-top: 8px;
+  color: #454545;
+  margin: 1%;
+  width: 98%;
+  height: 15%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.gif-favorite-item {
+	padding: 1%;
+	display: inline-block;
+    vertical-align: middle;
+	position: relative;
 }
