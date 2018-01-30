@@ -11,8 +11,6 @@ import { fetchSearchWord } from '../../api/search'
 
 import FavoritesList from '../../components/favoritesList/FavoritesList'
 import SearchResultList from '../../components/searchResultList/SearchResultList'
-import Gif from '../../components/gif/Gif'
-import FavoriteIcon from '../../components/favoriteIcon/FavoriteIcon'
 
 class Search extends Component {
 	constructor() {
@@ -32,8 +30,8 @@ class Search extends Component {
 	handleChange(event) {
 		const value = event.target.value;
 
-			this.setState({
-				searchWord: value
+		this.setState({
+			searchWord: value
 		});
 	}
 

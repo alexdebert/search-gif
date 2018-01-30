@@ -5,8 +5,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FavoriteIcon from '../favoriteIcon/FavoriteIcon'
-
 import './Gif.scss';
 
 const Gif = props => {

@@ -55,16 +55,6 @@ const config = {
 		]
 	},
 
-	resolve: {
-		alias: {
-			src: path.resolve(__dirname, 'src')
-		},
-
-		extensions: [
-			'.js', '.jsx'
-		]
-	},
-
 	// Webpack plugins:
 	plugins: [
 		new HtmlWebpackPlugin({template: './src/index.html'})
