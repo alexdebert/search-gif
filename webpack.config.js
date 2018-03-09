@@ -61,6 +61,10 @@ const config = {
 		]
 	},
 
+	devServer: {
+	    port: 8181,
+	},
+
 	// Webpack plugins:
 	plugins: [
 		new HtmlWebpackPlugin({template: './src/index.html'})

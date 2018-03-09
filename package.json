@@ -9,15 +9,12 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "axios": "^0.17.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "babel-runtime": "^6.26.0",
-    "bootstrap": "^4.0.0-alpha.6",
     "css-loader": "^0.28.7",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.7.2",
@@ -27,6 +24,9 @@
     "webpack-dev-server": "^2.9.5"
   },
   "dependencies": {
+    "axios": "^0.17.1",
+    "babel-runtime": "^6.26.0",
+    "bootstrap": "^4.0.0-alpha.6",
     "prop-types": "^15.6.0",
     "react": "^15.6.0",
     "react-dom": "^15.6.0",
