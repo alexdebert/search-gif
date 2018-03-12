@@ -22,7 +22,7 @@ class SearchBar extends Component {
 	render() {
 		return (
 			<div className="">
-				<input onChange={event => this.handleInputChange(event.target.value)} />
+				<input placeholder="Enter text to search for gifs!" onChange={event => this.handleInputChange(event.target.value)} />
 			</div>
 		)
 	}
