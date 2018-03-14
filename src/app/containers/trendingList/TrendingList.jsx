@@ -2,13 +2,18 @@
  * @overview Trending List container.
  */
 
+
+//React
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+//Style
 import './TrendingList.scss';
 
+//API
 import { fetchTrending } from '../../api/trending'
 
+//Components
 import Gif from '../../components/gif/Gif'
 
 class TrendingList extends Component {

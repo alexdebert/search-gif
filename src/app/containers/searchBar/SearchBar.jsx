@@ -2,7 +2,11 @@
  * @overview SearchBar container.
  */
 
+//React
 import React, {Component} from 'react';
+
+//Styles
+import './SearchBar.scss'
 
 class SearchBar extends Component {
 	constructor() {

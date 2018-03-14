@@ -1,7 +1,12 @@
 /**
  * @overview Gif component.
  */
+
+ //React
 import React from 'react';
+
+//Styles
+import './Gif.scss'
 
 const Gif = props => {
   return (

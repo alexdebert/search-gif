@@ -1,15 +1,23 @@
 /**
  * @overview Home page.
  */
+
+//React
 import React, {Component} from 'react';
-import TrendingList from './containers/trendingList/TrendingList';
-import SearchBar from './containers/searchBar/SearchBar';
-import GifList from './components/gifList/GifList';
-import GifModal from './components/gifModal/GifModal';
 
-import { fetchSearchWord } from './api/search'
+//Components
+import TrendingList from '../trendingList/TrendingList';
+import SearchBar from '../searchBar/SearchBar';
+import GifList from '../../components/gifList/GifList';
+import GifModal from '../../components/gifModal/GifModal';
 
-class App extends Component {
+//API
+import { fetchSearchWord } from '../../api/search'
+
+//Style
+import './Home.scss'
+
+class Home extends Component {
 	constructor() {
 	    super();
 
@@ -63,4 +71,4 @@ class App extends Component {
   }
 };
 
-export default App;
+export default Home;

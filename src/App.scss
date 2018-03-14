@@ -1,0 +1,16 @@
+/**
+ * Global application styles.
+ */
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+.app {
+    margin: 3em auto;
+    width: 90%;
+}
+
+@media only screen and (min-width: 1280px) {
+    .app {
+        width: 1140px;
+    }
+}

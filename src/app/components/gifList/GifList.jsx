@@ -1,8 +1,15 @@
 /**
  * @overview Gif List component.
  */
+
+//React
 import React from 'react';
+
+//Component
 import Gif from '../gif/Gif';
+
+//Style
+import './GifList.scss'
 
 const GifList = props => {
   const gifItems = props.gifs.map(gif => {

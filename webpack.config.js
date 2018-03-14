@@ -10,7 +10,7 @@ const path = require('path');
 const OUTPUT_PATH = 'dist';
 
 const config = {
-	entry: './src/app.js',
+	entry: './src/App.js',
 
 	output: {
 		path: path.resolve(__dirname, OUTPUT_PATH),

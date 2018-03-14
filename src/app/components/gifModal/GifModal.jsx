@@ -1,3 +1,8 @@
+/**
+ * @overview Gif Modal component.
+ */
+
+//React
 import React from 'react';
 import Modal from 'react-modal';
 
