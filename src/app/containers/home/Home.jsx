@@ -3,7 +3,13 @@
  */
 
 //React
-import React, {Component} from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+//Actions
+import { getGifs } from '../../actions/gifActions.js';
+import { openModal, closeModal } from '../../actions/modalActions.js';
 
 //Components
 import TrendingList from '../trendingList/TrendingList';
@@ -11,64 +17,40 @@ import SearchBar from '../searchBar/SearchBar';
 import GifList from '../../components/gifList/GifList';
 import GifModal from '../../components/gifModal/GifModal';
 
-//API
-import { fetchSearchWord } from '../../api/search'
-
 //Style
 import './Home.scss'
 
-class Home extends Component {
-	constructor() {
-	    super();
-
-	    this.state = {
-	        gifs: [],
-          selectedGif: null,
-          modalIsOpen: false
-	    }
-
-      this.openModal = this.openModal.bind(this);
-	}
-
-  openModal(gif) {
-        this.setState({
-            modalIsOpen: true,
-            selectedGif: gif
-        });
-    }
-
-    closeModal() {
-        this.setState({
-            modalIsOpen: false,
-            selectedGif: null
-        });
-  }
-
-  handleWordChange = word => {
-    fetchSearchWord(word)
-			.then(response => {
-				this.setState({
-					gifs: response.data.data
-				})
-			})
-			.catch(error => console.error(error.message));
-  }
-
+class Home extends React.Component {
   render() {
     return (
       <div>
-      	< TrendingList />
-      	<div className="search-container">
-        	<SearchBar onWordChange={this.handleWordChange} />
-        	<GifList gifs={this.state.gifs} 
-                    onGifSelect = {this.openModal}/>
-          <GifModal modalIsOpen={this.state.modalIsOpen}
-                    selectedGif={this.state.selectedGif}
-                    onRequestClose={ () => this.closeModal() } />
-      	</div>
+        < TrendingList />
+        <div className="search-container">
+          <SearchBar onWordChange= {this.props.getGifs} />
+          <GifList gifs={ this.props.gifs } onGifSelect={ selectedGif => this.props.openModal({selectedGif}) }/>
+          <GifModal modalIsOpen={ this.props.modalIsOpen }
+                    selectedGif={ this.props.selectedGif }
+                    onRequestClose={ () => this.props.closeModal() } />
+      </div>
       </div>
     );
   }
-};
+}
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    gifs: state.gifs.data,
+    modalIsOpen: state.modal.modalIsOpen,
+    selectedGif: state.modal.selectedGif
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    getGifs,
+    openModal,
+    closeModal
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
