@@ -3,7 +3,7 @@
  */
 
 //React
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -20,7 +20,7 @@ import GifModal from '../../components/gifModal/GifModal';
 //Style
 import './Home.scss'
 
-class Home extends React.Component {
+class Home extends Component {
   render() {
     return (
       <div>

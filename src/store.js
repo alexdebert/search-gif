@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
-import rootReducer from '../reducers';
+import rootReducer from './app/reducers';
 import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
 
@@ -12,15 +12,13 @@ export function configureStore(initialState) {
     initialState,
     compose (
       applyMiddleware(ReduxPromise, routerMiddleware(history)),
-      //allow the Redux Dev Tools Chrome extension to access the store
-      window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers').default;
+      const nextRootReducer = require('app/reducers/index').default;
       store.replaceReducer(nextRootReducer);
     });
   }
