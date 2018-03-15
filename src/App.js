@@ -4,24 +4,31 @@ import './App.scss';
 // React
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router';
-
 import { Provider } from 'react-redux';
-import configureStore from './app/store/store';
+import { ConnectedRouter } from 'react-router-redux';
+import { Route } from 'react-router-dom';
+import { history, configureStore } from './app/store/store';
 
-// Our app
+// Components
 import Home from './app/containers/home/Home';
+import Header from './app/containers/header/Header';
+import Signup from './app/containers/signup/Signup';
+import Login from './app/containers/login/Login';
+
 
 const store = configureStore();
 
 render((
 	<Provider store={store}>
-		<Router history={browserHistory}>
-			<Route path='/' component={Home}>
-				<IndexRoute component={Home}/>
-				<Route path='home' component={Home}/>
-				<Redirect from='*' to='/home'/>
-			</Route>
-		</Router>
+		<ConnectedRouter history={history}>
+			<div>
+				<Header />
+				<div className="container">
+					<Route exact path="/" component={ Home }/>
+					<Route path="/signup" component={ Signup } />
+					<Route path="/login" component={ Login } />
+				</div>
+			</div>
+		</ConnectedRouter>
 	</Provider >
 ), document.getElementById('root'));
