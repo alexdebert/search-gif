@@ -27,6 +27,7 @@
     "axios": "^0.17.1",
     "babel-runtime": "^6.26.0",
     "bootstrap": "^4.0.0-alpha.6",
+    "firebase": "^4.11.0",
     "history": "^4.7.2",
     "prop-types": "^15.6.0",
     "react": "^15.6.0",
@@ -38,6 +39,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0"
   }
 }

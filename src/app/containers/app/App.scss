@@ -2,15 +2,13 @@
  * Global application styles.
  */
 
-@import "~bootstrap/scss/bootstrap.scss";
-
-.app {
+.root {
     margin: 3em auto;
     width: 90%;
 }
 
 @media only screen and (min-width: 1280px) {
-    .app {
+    .root {
         width: 1140px;
     }
 }
