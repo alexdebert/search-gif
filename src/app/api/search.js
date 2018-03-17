@@ -1,3 +1,7 @@
+/**
+ * @overview Search services.
+ */
+
 import axios from 'axios';
 
 const key = `qy0IKdJNNPIKloYUUL0VKKv1wWJd8L25`;

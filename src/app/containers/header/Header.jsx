@@ -5,12 +5,14 @@
 //React
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+
+//Actions
 import { signOutUser } from '../../actions/authActions';
 
+//Components
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
-
 	handleSignout() {
 		this.props.signOutUser();
 	}

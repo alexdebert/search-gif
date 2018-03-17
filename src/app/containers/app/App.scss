@@ -7,6 +7,29 @@
     width: 90%;
 }
 
+.fa-heart {
+  color: #a94442;
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-heart:hover {
+  color: #ccc;
+}
+
+.fa-heart-o {
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-heart-o:hover {
+  color: #a94442;
+}
+
 @media only screen and (min-width: 1280px) {
     .root {
         width: 1140px;

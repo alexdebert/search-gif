@@ -1,5 +1,5 @@
 /**
- * Modal actions.
+ * @overview Modal actions.
  */
 
 export const OPEN_MODAL = 'OPEN_MODAL';

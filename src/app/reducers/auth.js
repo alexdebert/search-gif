@@ -1,7 +1,12 @@
+/**
+ * @overview Authentication reducer.
+ */
+
 import { AUTH_USER, SIGN_OUT_USER, AUTH_ERROR } from '../actions/authActions';
 
 const initialState =  {
-	authenticated: false
+	authenticated: false,
+	error: null
 };
 
 export default function gifs(state = initialState, action) {

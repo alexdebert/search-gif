@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 //Actions
-import { getGifs } from '../../actions/gifActions.js';
+import { getGifs, favoriteGif, unfavoriteGif } from '../../actions/gifActions.js';
 import { openModal, closeModal } from '../../actions/modalActions.js';
 
 //Components
@@ -24,10 +24,14 @@ class Home extends Component {
   render() {
     return (
       <div>
-        < TrendingList />
+        < TrendingList onGifSelect={ selectedGif => this.props.openModal({selectedGif}) } />
         <div className="search-container">
           <SearchBar onWordChange= {this.props.getGifs} />
-          <GifList gifs={ this.props.gifs } onGifSelect={ selectedGif => this.props.openModal({selectedGif}) }/>
+          <GifList gifs={ this.props.gifs }
+				   onGifSelect={ selectedGif => this.props.openModal({selectedGif}) }
+				   onFavoriteSelect={ selectedGif => this.props.favoriteGif({selectedGif}) }
+				   onFavoriteDeselect={ selectedGif => this.props.unfavoriteGif({selectedGif}) }
+				   isAuthenticated={ this.props.authenticated } />
           <GifModal modalIsOpen={ this.props.modalIsOpen }
                     selectedGif={ this.props.selectedGif }
                     onRequestClose={ () => this.props.closeModal() } />
@@ -39,6 +43,7 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
+	  authenticated: state.auth.authenticated,
     gifs: state.gifs.data,
     modalIsOpen: state.modal.modalIsOpen,
     selectedGif: state.modal.selectedGif
@@ -49,7 +54,9 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     getGifs,
     openModal,
-    closeModal
+    closeModal,
+    favoriteGif,
+    unfavoriteGif
   }, dispatch)
 }
 

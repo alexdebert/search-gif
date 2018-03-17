@@ -1,3 +1,7 @@
+/**
+ * @overview Application.
+ */
+
 // Global application styles
 import './App.scss';
 

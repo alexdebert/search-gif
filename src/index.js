@@ -1,7 +1,16 @@
+/**
+ * @overview Application initializer.
+ */
+
+//React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app/containers/app/App';
 import { Provider } from 'react-redux';
+
+//Component
+import App from './app/containers/app/App';
+
+//Store
 import { configureStore } from './store';
 
 const store = configureStore();

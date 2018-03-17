@@ -1,4 +1,10 @@
+/**
+ * @overview Main reducer.
+ */
+
 import { combineReducers } from 'redux';
+
+//Reducers
 import GifsReducer from './gif';
 import ModalReducer from './modal';
 import AuthReducer from './auth';

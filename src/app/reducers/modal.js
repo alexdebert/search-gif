@@ -1,5 +1,5 @@
 /**
- * Modal reducer.
+ * @overview Modal reducer.
  */
 
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions/modalActions';

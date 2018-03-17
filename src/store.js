@@ -1,3 +1,7 @@
+/**
+ * @overview Storage.
+ */
+
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import rootReducer from './app/reducers';
@@ -13,7 +17,7 @@ export function configureStore(initialState) {
     rootReducer,
     initialState,
     compose (
-      applyMiddleware(reduxThunk, routerMiddleware(history)),
+      applyMiddleware(reduxThunk, routerMiddleware(history))
     )
   );
 
