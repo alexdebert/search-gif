@@ -7,7 +7,7 @@ import Firebase from 'firebase';
 export const FETCH_FAVORITED_GIFS = 'FETCH_FAVORITED_GIFS';
 export const GET_GIFS = 'GET_GIFS';
 
-import * as gifsApi from '../api/search'
+import * as gifsApi from '../api/gifServices'
 
 export let getGifs = (word = null) => {
 	return function(dispatch) {

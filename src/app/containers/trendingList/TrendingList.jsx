@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import './TrendingList.scss';
 
 //API
-import { fetchTrending } from '../../api/trending'
+import { fetchTrending } from '../../api/gifServices'
 
 //Components
 import Gif from '../../components/gif/Gif'
@@ -24,7 +24,8 @@ class TrendingList extends Component {
 	}
 
 	componentDidMount() {
-		fetchTrending()
+		let limit = 10;
+		fetchTrending(limit)
 			.then(response => this.setState({gifs: response.data.data}))
 			.catch(error => console.error(error.response));
 	}
